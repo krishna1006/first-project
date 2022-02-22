@@ -1,0 +1,36 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(54, 166, 194);
+    border-radius: 10px 10px 0px 0px;
+  }  
+ li {
+    float: left;
+  }  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background-color: rgb(65, 175, 55);
+  }
+  .active {
+    background-color: #4CAF50;
+    color: white;
+  }
+  h1{
+      text-align: center;
+      color: rgb(161, 91, 44);
+      text-shadow:2px 3px 2px solid rgb(138, 46, 46) ;
+  }
+  h4{
+      color: rgb(106, 106, 211);
+  }

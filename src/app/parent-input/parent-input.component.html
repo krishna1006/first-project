@@ -1,0 +1,13 @@
+
+
+
+<div class="card componantstyle">
+      <div>
+          <input-childoutput (newItemEvent)="additem($event)"></input-childoutput>
+               <ul class="list-group">
+                   <li class="form-list-items" *ngFor="let classlist of classlist">
+                     <input-child [product]="classlist"></input-child>
+                  </li>
+            </ul>
+      </div>
+</div>

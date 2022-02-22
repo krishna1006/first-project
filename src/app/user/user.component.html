@@ -1,0 +1,88 @@
+<div class="card componentStyle">
+
+  <div class="form-group" style="text-align: right;">
+    <button  (click)="adduser"class="form-control"class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#user">
+        +Add
+    </button>
+     
+    </div> 
+    <div class="row">
+        <div class="col-1">
+
+        </div>
+        <div class="col-11">
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>#id</th>
+                <th>name</th>
+                <th>username</th>
+                <th>email</th>
+                <th>address</th>
+                <th>street</th>
+                <th>city</th>
+                <th>zipcode</th>
+
+            </tr>
+        </thead>
+            <tbody>
+                <tr>
+                      <tr *ngFor="let user of lstuser | paginate : {itemsPerPage:5,currentPage:p}">
+                        <td class="row">{{user.id}}</td>
+                        <td>{{user.name</td>
+                        <td>{{user.username}}</td>
+                        <td>{{user.email}}</td>
+                        <th>{{user.street}}</th>
+                        <th>{{user.city}}</th>
+                        <th>{{user.zipcode}}</th>
+                        <td>
+                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>&nbsp;
+                            <button (click)= "viewuser(user)"  data-bs-toggle="modal" data-bs-target="#user"class="btn btn-secondary"><i class="fa-solid fa-eye"></i></button>&nbsp;
+                            <button (click)= "edituser(user)"  data-bs-toggle="modal" data-bs-target="#user"class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                        </td>
+                        </tr>
+                    
+               <tr>
+                   <td class="text-center" colspan="6">
+               <pagination-controls (pageChange)="p=$event"></pagination-controls>
+            </td> 
+
+            </tr>
+          </tbody>
+    </table>
+    </div>
+    </div>
+</div>
+
+
+
+<div class="modal" id="user">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                   <h2>{{title}}</h2>
+            </div>
+            <div class="modal-body">
+                  <div class="form-group">
+                      <label For="txtid"class="col-form-label">Id</label>
+                      <input [disabled]="title=='view a user'"[(ngModel)]="userModel.id"name="txtid"class="form-control" type="number" id="txtid">
+                  </div> 
+                  <div class="form-group">
+                    <label For="txtusername"class="col-form-label">username</label>
+                    <input   [disabled]="title=='view a user'" [(ngModel)]="userModel.username"name="txtusername"class="form-control" type="string" id="txtusername">
+                  </div>
+                <div class="form-group">
+                    <label For="txtemail" class="col-form-label">Email</label>
+                    <input  [disabled]="title=='view a user'" [(ngModel)]="userModel.email"  name="txtemail"class="form-control" type="string" id="txtemail">
+                </div>  
+                
+            </div>
+            <div class="modal-footer">
+                 <button  [hidden]="title=='view a user'"class="btn btn-primary">save</button>  
+                 <button  class="btn btn-danger" data-bs-dismiss="modal">close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,200 @@
+
+<h1>{{title}}</h1>
+
+    <table style ="margin: auto; width: 1300px;">
+        <tr>
+            <td>
+                <ul>
+                    <li> 
+                        <a  [routerLinkActive]="'active'" [routerLink]= "'/home'">home</a>
+                    </li>
+                    <li>
+                        <a  [routerLinkActive]="'active'" [routerLink]= "'/login'">Login</a>
+                    </li>
+                    <li>
+                        <a  [routerLinkActive]="'active'"  [routerLink]="'/contactform'">Regiester Here</a>
+                    </li>
+                    <li>
+                        <a  [routerLinkActive]="'active'"  [routerLink]="'/parent'">parent Child</a>
+                    </li>
+                    <li>
+                        <a  [routerLinkActive]="'active'"  [routerLink]= "'/post'">post</a>
+                    </li>
+                    <li>
+                        <a  [routerLinkActive]="'active'"  [routerLink]= "'/photos'">photos</a>
+                    </li>
+                   <li>
+                       <a  [routerLinkActive] ="'active'"  [routerLink]= "'/todos'">todos</a>
+                   </li>
+                   <li>
+                       <a  [routerLinkActive]="'active'"   [routerLink]="'/user'">User</a>
+                   </li>
+                   <li>
+                       <a  [routerLinkActive]="'active'"   [routerLink]="'/comment'">Comment</a>
+                   </li> 
+                <li>
+                    <a     [routerLinkActive]="'active'"   [routerLink] = "'/forgotpassword'">forgot-password</a>
+                </li>
+                    <li>
+                       <a  [routerLinkActive]="'invoice'" [routerLink]="'/invoice'">invoice</a>
+                    </li>
+                    <li>
+                        <a [routerLinkActive]="'active'"   [routerLink]="'/parentinput'">parentinput</a>
+                    </li>
+                    <li>
+                        <a [routerLinkActive]="'active'" [routerLink]="'register'">register</a>
+                    </li>
+                    <li>
+                        <a (click)="logout()">Logout</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        </table>
+    
+    <router-outlet></router-outlet>
+
+
+
+       <!---- <div [ngSwitch]="viewMode"> 
+ 
+            <div *ngSwitchCase="'rama'">
+             <rama></rama>
+            </div>
+     
+           <div  *ngSwitchCase="'login'">
+              <login></login>
+           </div>
+  
+            <div *ngSwitchCase="'input'">
+             <parent></parent>
+          </div>
+
+         <div *ngSwitchCase="'outPut'">
+             <contact-form></contact-form>
+         </div>
+
+         <div *ngSwitchCase="'post'">
+            <post></post>
+        </div>   
+
+       <div *ngSwitchCase="'photos'">
+           <photos></photos>
+       </div>
+
+       <div *ngSwitchCase="'todos'">
+        <todos></todos>
+        </div>
+
+        <div *ngSwitchCase="'user'">
+        <user></user>
+        </div>
+
+         <div *ngSwitchCase="'comment'">
+        <comment></comment>
+         </div>
+         
+        <div *ngSwitchCase="'forgot-password'">
+         <forgot-password></forgot-password>
+         </div>
+        
+        </div     
+        
+
+        
+                    <li>
+                        <a [ngClass]="{'active':viewMode=='rama','current':viewMode=='rama'}"
+                           (click)="viewMode='rama'">Home</a>
+                    </li>
+                    <li>
+                        <a  [ngClass]="{'active':viewMode=='login','current':viewMode=='login'}" 
+                          (click)="viewMode='login'">Login</a>
+                    </li>
+
+                     <li>
+                        <a [ngClass]="{'active':viewMode=='input','current':viewMode=='input'}"
+                        (click)="viewMode='input'">input</a>
+                        
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active':viewMode=='outPut','current':viewMode=='outPut'}"
+                        (click)="viewMode='outPut'">Out Put</a>
+                        
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active':viewMode=='post','current':viewMode=='post'}"
+                        (click)="viewMode='post'">Post</a>
+                        
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active':viewMode=='photos','current':viewMode=='photos'}"
+                        (click)="viewMode='photos'">photos</a>
+                        
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active':viewMode=='todos','current':viewMode=='todos'}"
+                        (click)="viewMode='todos'">todos</a>
+                        
+                    </li>
+                    <li>
+                        <a [ngClass]="{'active':viewMode=='user','current':viewMode=='user'}"
+                        (click)="viewMode='user'">User</a>
+                        
+                    </li>
+                    <li>
+                        <a href="/photos">Comment</a>
+                        
+                    </li>
+                    <li>
+                        <a href="/home">forgot-password</a>
+                        
+                    </li>
+
+
+
+
+                    router parameter eventes
+
+                    import { Component, OnInit } from '@angular/core';
+
+import { postModel } from '../post/post.module';
+import { postservice } from '../post/post.service';
+
+@Component({
+  selector: 'post-details',
+  templateUrl: './post-details.component.html',
+  styleUrls: ['./post-details.component.css']
+})
+export class PostdetailsComponent implements OnInit {
+  postModel = new postModel();
+  constructor(private postservices : postservice) { }
+  
+  ngOnInit(): void {
+    let id : 3
+    this.postservices.getById(id).subscribe(response =>{
+      this.postModel =  response as postModel
+    })
+  }
+
+}
+
+
+<div class="card componentStyle">
+    <div class="card text-center">
+        <div class="card-header">
+        post details
+         </div>
+               <div class="card-body">
+               <h3 class="card-title">          {{postModel.title}}  </h3>
+               <p class="card-text">userId :    {{postModel.userId}} </p>
+               <p class="card-text">body   :    {{postModel.body}}   </p>
+               </div>
+          </div>
+    </div>
+
+        
+        
+        ---->
+
+
+

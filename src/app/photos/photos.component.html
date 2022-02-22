@@ -1,0 +1,72 @@
+<div class="card componentStyle">
+  <div class="form-group" style="text-align: right;">
+    <a type="button" (click)="addphotos()" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Photos">
+      +Add 
+    </a>
+    </div>
+
+<table class="table table-sm">   
+    <thead>
+     <tr>
+        <th>#id</th>  
+        <th>name</th>
+        <th>Email</th>
+        <th>body</th>
+     </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let photos of lstphotos | paginate : {itemsPerPage : 5,currentPage : p}">  
+        <br>      
+          <td scope="row">{{photos.id}}</td>
+          <td>{{photos.name}}</td>
+          <td class="col-6">{{photos.body}}</td>
+          <td>
+            <button  (click)="deletephotos(photos)"  data-bs-toggle="modal" data-bs-target="#Photos"   class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+            <button  (click)="viewphotos(photos)"     data-bs-toggle="modal" data-bs-target="#Photos"   class="btn btn-primary"><i class="fa-solid fa-eye"></i></button>
+            <a  [routerLink]="['/photos',photos.id]" class="btn btn-secondary" [queryParams]="{name : photos.name,body:photos.body}"><i class="fa-solid fa-pen-to-square"></i></a>
+          </td> 
+      </tr>
+      <tr>
+        <td class="text-center"colspan="4">
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+<div class="modal fade" id="Photos" tabindex="-1" aria-labelledby="mpphotosTitle" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="photosTitle">{{title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <form >
+        <div *ngIf="alertMessage" class="alert alert-success" role="alert">
+          {{alertMessage}}
+        </div>
+        <div class="form-group">
+         <label for="txtid" class="col-form-label" >id</label>
+         <input name="txtid"  [disabled]="title=='view a photos'" [(ngModel)]="photosModel.id" type="number" class="form-control" id="txtid">
+        </div>
+        <div class="form-group">
+          <label for="txtname" class="col-form-label" >User Name</label>
+         <input name="txtname"  [disabled]="title=='view a photos'"  [(ngModel)]="photosModel.name"type="text" class="form-control" id="txtname">
+       </div>
+       <div class="form-group">
+        <label for="txtbody" class="col-form-label">body</label>
+        <textarea name="txtbody"   [disabled]="title=='view a photos'" [(ngModel)]="photosModel.body" type="text" class="form-control" id="txtbody">
+          </textarea>
+       </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  [hidden]="title=='view a photos'"(click)="savephotosdetails()" class="btn btn-primary">Save  </button>
+      </div>
+    </div>
+  </div>
+</div>

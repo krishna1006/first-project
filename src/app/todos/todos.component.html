@@ -1,0 +1,68 @@
+<div class="card componentstyle">
+       <div class="form-group" style="text-align: right;">
+        <button class="btn btn-primary" (click)="addtodos" data-bs-toggle="modal" data-bs-target="#todos" >Add</button>
+    </div>
+    <br>
+    <table class="table table-success table-striped">
+        <thead>
+          <tr>
+            <th>#id</th>
+            <th>userId</th>
+            <th >title</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+                 <tr *ngFor="let todos of lsttodos |paginate : {itemsPerPage : 5,currentPage : p}">
+              
+                <td scope="row">{{todos.id}}</td>
+                <td>{{todos.userId}}</td>
+                <td>{{todos.title}}</td>
+                <td>
+                    <button  class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>&nbsp;
+                    <button  (click)="viewtodos(todos)" data-bs-toggle="modal" data-bs-target="#todos"class="btn btn-secondary"><i class="fa-solid fa-eye"></i></button>&nbsp;
+                    <button (click)="edittodos(todos)"  data-bs-toggle="modal" data-bs-target="#todos" class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
+                </td>
+          </tr>
+          
+          <tr>
+           <td class ="text-center"colspan="4">
+             <pagination-controls (pageChange)="p =$event"></pagination-controls>
+           </td>
+          </tr> 
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+    <div class="modal fade" id="todos" tabindex="-1" aria-labelledby="todosTitle" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                <h5 class="modal-title" id="todosTitle">{{title}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                 <div class="form-group">
+                     <label For="txtid"class="col-form-label">id</label>
+                  <input     [(ngModel)]="todosModel.id"  name="txtid" id="txtid"class="form-control">
+                 </div>
+                 <div class="form-group">
+                     <label For="txtuserId" class="col-form-label">userId</label>
+                    <input  [ngModel]="todosModel.userId" id="txtuserId" name="txtuserId"class="form-control">
+                 </div>
+                 <div class="form-group">
+                     <label For="txttitle" class="col-form-label">body</label>
+                    <input [(ngModel)]="todosModel.title"  class="form-control"  name="txttitle" id="txttitle">
+                 </div>
+         </div>
+         <div class="modal-footer">
+            <button (click)="savatodosdetails()"  type="button" class="btn btn-primary">save</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"> close</button>
+         </div>
+     </div>
+    </div>

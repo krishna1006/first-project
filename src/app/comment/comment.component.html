@@ -1,0 +1,70 @@
+
+
+<div class="card componentStyle">
+<div class="form-group" style="text-align: right;">
+    <button   (click)="addcomment" data-bs-toggle="modal" data-bs-target="#comment"class="btn btn-primary">Add</button>
+</div>
+<table class="table table-sm">
+
+    <thead>
+        <tr>
+            <th>#Id</th>
+            <th>albumId</th>
+            <th>TITLE</th>
+            <th>URL</th>
+            <th>thumbnailUrl</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let comment of lstcomment | paginate : {itemsPerPage : 5,currentPage : p}">
+        <td class="row">{{comment.id}}</td>
+        <td>{{comment.albumId}}</td>
+        <td class="col-2">{{comment.title}}</td>
+        <td class="col-2">{{comment.url}}</td>
+        <td>{{comment.thumbnailUrl}}</td>
+        <td>
+            <button  (click)="viewcomment(comment)" data-bs-toggle="modal" data-bs-target="#comment" class="btn btn-secondary"><i class="fa-solid fa-eye"></i></button>&nbsp;
+            <button (click)="editcomment(comment)"  data-bs-toggle="modal" data-bs-target="#comment"class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>&nbsp;
+            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+        </td>
+    </tr>
+    <tr>
+
+     <td class="text-center" colspan="6">
+       <pagination-controls (pageChange)= "p =$event" ></pagination-controls>
+     </td>
+
+    </tr>
+    </tbody>
+</table>
+
+</div>
+
+
+<div class="modal" id="comment" tabindex="-1" aria-labelledby="commentTitle" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentTitle">{{title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+             <div class="form-group">
+                   <label For="txtalbumId" class="col-form-label">albumId</label>
+                   <input name="txtalbumId" [ngModel]="commentModel.albumId"  type="number" class="form-control" id="txtalbumId">
+                 <div class="form-group">
+                     <label For="txturl" class="col-form-label">URL</label>
+                     <input name="txturl" [ngModel]="commentModel.url"  type="string" class="form-control" id="txturl">
+                    <div class="form-group">
+                        <label For="txtthumbnailUrl" class="col-form-label">thumbnailUrl</label>
+                        <textarea name="txtthumbnailUrl" [ngModel]="commentModel.thumbnailUrl"   type="number" class="form-control" id="txtthumbnailUrl"></textarea>
+             </div>
+            </div>
+            <div class="modal-footer">
+                <button  class="btn btn-primary">Save</button>
+                <button  data-bs-dismiss="modal" class="btn btn-danger">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
