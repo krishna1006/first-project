@@ -9,10 +9,12 @@ export class RegisterComponent implements OnInit {
   title  = 'Register Here';
   
   email : string ='';
+  mobile: any;
+  password :number;
      constructor() { }
-     
+  
   login(){
-
+    console.log(this.email,this.password,this.mobile)
   }
 
   ngOnInit(): void {
