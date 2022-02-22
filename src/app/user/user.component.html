@@ -29,7 +29,7 @@
                 <tr>
                       <tr *ngFor="let user of lstuser | paginate : {itemsPerPage:5,currentPage:p}">
                         <td class="row">{{user.id}}</td>
-                        <td>{{user.name</td>
+                        <td>{{user.name}}</td>
                         <td>{{user.username}}</td>
                         <td>{{user.email}}</td>
                         <th>{{user.street}}</th>
@@ -41,7 +41,7 @@
                             <button (click)= "edituser(user)"  data-bs-toggle="modal" data-bs-target="#user"class="btn btn-primary"><i class="fa-solid fa-pen-to-square"></i></button>
                         </td>
                         </tr>
-                    
+                         
                <tr>
                    <td class="text-center" colspan="6">
                <pagination-controls (pageChange)="p=$event"></pagination-controls>
@@ -74,8 +74,7 @@
                 <div class="form-group">
                     <label For="txtemail" class="col-form-label">Email</label>
                     <input  [disabled]="title=='view a user'" [(ngModel)]="userModel.email"  name="txtemail"class="form-control" type="string" id="txtemail">
-                </div>  
-                
+                </div>       
             </div>
             <div class="modal-footer">
                  <button  [hidden]="title=='view a user'"class="btn btn-primary">save</button>  
